@@ -1,0 +1,1 @@
+sap.ui.define([],function(){"use strict";return{fetchCsrfToken:function(e){const t="X-CSRF-TOKEN";return new Promise((r,s)=>{$.ajax({context:this,type:"GET",url:e,beforeSend:e=>{e.setRequestHeader(t,"Fetch");e.setRequestHeader("X-Requested-With","XMLHttpRequest")},complete:e=>{let s=e.getResponseHeader(t);r(s)},error:e=>s(e)})})}}});

@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="Popover"
+		title="{popOverData>/data/industry}"
+		class="sapUiContentPadding"
+		placement="Right"
+		initialFocus="action">
+		<VBox>
+			<HBox>
+				<core:Icon
+			src="sap-icon://building"
+			class="size1 apUiSmallMarginEnd sapUiSmallMarginBottom"
+            size="30px"
+			color="#031E48"></core:Icon>
+				<VBox class="sapUiMediumMarginBegin">
+					<Label text="{popOverData>/data/city}, {popOverData>/data/region}, {popOverData>/data/country}"></Label>
+					<Link text="{popOverData>/data/fullname}" href=""></Link>
+					<HBox>
+						<core:Icon
+                            src="sap-icon://iphone"
+                            class=" sapUiTinyMarginEnd"
+                           />
+						<Text text="{popOverData>/data/phonenumber}" />
+					</HBox>
+					<HBox>
+						<core:Icon
+                                src="sap-icon://email"
+                                class=" sapUiTinyMarginEnd"
+                            />
+						<Text text="{popOverData>/data/emailaddress}" />
+					</HBox>
+				</VBox>
+			</HBox>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

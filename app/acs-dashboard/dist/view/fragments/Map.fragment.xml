@@ -1,0 +1,80 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:vk="sap.ui.vk"
+    xmlns:table="sap.ui.table"
+    xmlns:layout="sap.ui.layout">
+    <Panel expandable="false" expanded="true" id="idMapPanel" height="{shared>/oMapHeight}" class="sapUiNoContentPadding sapMapTodoPanel" backgroundDesign="Transparent">
+        <content>
+                <OverflowToolbar id="idMapOverflowToolbar">
+                    <ToolbarSpacer id="idMapToolbarSpacer"/>
+                    <SegmentedButton id="idMapSegmentedButton" selectedKey="maps" selectionChange="onSelectionChangeSegmentedButtonMaps">
+                        <items>
+                            <SegmentedButtonItem id="idMapSegmentedButtonItemMaps" text="{i18n>segmentedMaps}" key="maps"/>
+                            <SegmentedButtonItem id="idMapSegmentedButtonItemList" text="{i18n>segmentedList}" key="list"/>
+                        </items>
+                    </SegmentedButton>
+                    <ToolbarSpacer/>
+                </OverflowToolbar>
+                <table:Table id="idproduct"
+                   visibleRowCountMode="Auto"
+                    selectionMode="None"
+                    rows="{shared>/mapSpots}"
+                    visible="{visibility>/listVisibility}">
+                    <table:columns>
+                        <table:Column id="idCustomerNameColumn" width="25%">
+                            <Label id="idCustomerNameLabel" text="{i18n>customerName}"/>
+                            <table:template>
+                                   <Link
+										text="{shared>fullname}"
+										press="handlePopoverPress"
+										ariaHasPopup="Dialog"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column id="idCustomerCityColumn" width="25%">
+                            <Label id="idCustomerCityLabel" text="{i18n>city}"/>
+                            <table:template>
+                                <Text id="idCustomerCityText" 
+                                    text="{shared>city}" wrapping="false"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column id="idCustomerRegionColumn" width="25%">
+                            <Label id="idCustomerRegionLabel" text="{i18n>region}"/>
+                            <table:template>
+                                <Text id="idCustomerRegionText" 
+                                    text="{shared>country}" wrapping="false"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column id="idCustomerSeverityColumn" width="25%">
+                            <Label id="idCustomerSeverityLabel" text="{i18n>priority}"/>
+                            <table:template>
+                                <Image src="{path: 'shared>colorSpots', formatter: '.formatter.getImage'}" alt="Severity" width="3.75rem" height="1.25rem" />
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+                <Panel id="idMapContainerPanel" visible="{visibility>/mapVisibility}" class="sapUiNoContentPadding sapPanelMapsContainer" backgroundDesign="Transparent">
+                            <content>
+                                <vk:MapContainer id="idMapContainer" visible="{visibility>/mapVisibility}" showSelection="false">
+                                    <vk:content>
+                                        <vk:ContainerContent id="idMapContainerContent" title="Geo Map" icon="sap-icon://chart-table-view">
+                                            <vk:content>
+                                                <vbm:GeoMap id="idmap" enableAnimation="false">
+                                                    <vbm:vos>
+                                                        <vbm:Spots items="{shared>/mapSpots}">
+                                                            <vbm:Spot id="idMapSpots" position="{shared>geocode}" tooltip="{shared>industry}" type="{path: 'shared>colorSpots', formatter: '.formatter.getColor'}"
+                                                             click="onClickSpot"/>
+                                                        </vbm:Spots>
+                                                    </vbm:vos>
+                                                </vbm:GeoMap>
+                                            </vk:content>
+                                        </vk:ContainerContent>
+                                    </vk:content>
+                                </vk:MapContainer>
+                            </content>
+                     </Panel>
+        </content>
+    </Panel>
+</core:FragmentDefinition>
+ 

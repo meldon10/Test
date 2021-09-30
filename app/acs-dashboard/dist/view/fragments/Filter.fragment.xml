@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:filterBar="sap.ui.comp.filterbar">
+    <filterBar:FilterBar 
+        id="idACSDashFilterBar" 
+        reset="onReset" 
+        search="onSearchFilterBar" 
+        useToolbar="false"
+        showClearOnFB="true" class="sapUiNoContentPadding">
+        <filterBar:filterItems>
+            <filterBar:FilterItem name="BUSINESSPARTNER" label="{i18n>customerID}" id="idFilterItemCustomerID">
+                <filterBar:control>
+                    <Input
+                        id="idCustomerID" placeholder="{i18n>placeholderCustomerID}" />
+                </filterBar:control>				
+            </filterBar:FilterItem>	
+            <filterBar:FilterItem name="fullname" label="{i18n>customerName}" id="idFilterItemCustomerName">
+                <filterBar:control>
+                    <Input
+                        id="idCustomerName" placeholder="{i18n>placeholderCustomerName}" />
+                </filterBar:control>				
+            </filterBar:FilterItem>	
+            <filterBar:FilterItem name="city" label="{i18n>customerCity}" id="idFilterItemCustomerCity">
+                <filterBar:control>
+                    <Input
+                        id="idCustomerCity" placeholder="{i18n>placeholderCustomerCity}" />
+                </filterBar:control>				
+            </filterBar:FilterItem>	
+            <filterBar:FilterItem name="postalcode" label="{i18n>customerPostalCode}" id="idFilterItemCustomerPostalCode">
+                <filterBar:control>
+                    <Input
+                        id="idCustomerPostalCode" placeholder="{i18n>placeholderCustomerPostalCode}" />
+                </filterBar:control>				
+            </filterBar:FilterItem>	
+            <filterBar:FilterItem name="country" label="{i18n>customerRegionCountry}" id="idFilterItemCustomerRegionCountry">
+                <filterBar:control>
+                    <MultiComboBox
+                        id="idCustomerRegionCountry"
+                        items="{shared>/country}"
+                        placeholder="{i18n>placeholdercustomerRegionCountry}">
+                        <core:Item key="{shared>country}" text="{shared>country}"
+                            id="idItem" />
+                    </MultiComboBox>
+                </filterBar:control>				
+            </filterBar:FilterItem>							
+        </filterBar:filterItems>
+    </filterBar:FilterBar>
+</core:FragmentDefinition>

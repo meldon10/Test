@@ -1,0 +1,32 @@
+<mvc:View
+    controllerName="com.sap.acs.ui.dashboard.controller.CustomerDetail"
+	xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+	xmlns="sap.m"
+	xmlns:variants="sap.ui.comp.variants"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout">
+	<f:DynamicPage id="idMainCustomerDetailDynamicPage"
+        fitContent="true" showFooter="{visibility>/FooterVisibility}">
+		<f:title id="idMainCustomerDetailTitle">
+			<f:DynamicPageTitle id="idCustomerDetailhDynamicPageTitle">
+				<f:heading id="idCustomerDetailHeading">
+					<variants:VariantManagement
+                        id="idMainCustomerDetailVariantManagement" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:content id="idMainCustomerDetailContent">
+			<Panel id="idMainCustomerDetailPanel">
+				<content id="idMainCustomerDetailContentFragmentMap">
+					<core:Fragment fragmentName="com.sap.acs.ui.dashboard.view.fragments.CustomerDetailMap" type="XML" />
+				</content>
+				<content id="idMainCustomerDetailContentFragmentHeader">
+					<core:Fragment fragmentName="com.sap.acs.ui.dashboard.view.fragments.CustomerDetailHeader" type="XML" />
+				</content>
+			</Panel>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

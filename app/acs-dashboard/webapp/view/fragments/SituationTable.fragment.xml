@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:vbm="sap.ui.vbm"
+	xmlns:vk="sap.ui.vk"
+	xmlns:u="sap.ui.unified"
+	xmlns:table="sap.ui.table">
+	<VBox id="idSituationVBox" class="sapUiNoContentPadding sapSituationTableSection">
+		<Label text="{i18n>serviceOrders}" class="sapUiSmallMarginBottom"></Label>
+		<table:Table id="situationTable"  
+                    visibleRowCountMode="Auto"
+                    enableCellFilter="true"        	
+				    filter="globalFilter"
+                    selectionMode="None"
+                    rows="{shared>/situationTableCustomerDetails/service_orders}">
+			<table:extension>
+				<OverflowToolbar style="Clear">
+					<ToolbarSpacer/>
+					<SearchField
+							placeholder="{i18n>filter}"
+							value=""
+							search="filterGlobally"
+							width="15%"/>
+				</OverflowToolbar>
+			</table:extension>
+			<table:columns>
+				<table:Column id="idSituation">
+					<Label id="idSituationLabel" text="{i18n>id}" />
+					<table:template>
+						<Link
+                            text="{shared>SO_ID}" press="onPressServiceOrder"
+                            ariaHasPopup="Dialog"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="idSituationDescription" filterProperty="description">
+					<Label id="idSituationDescriptionLabel" text="{i18n>descriptionOpenServiceOrders}"/>
+					<table:template>
+						<Text id="idSituationDescriptionValue" 
+                                    text="{shared>description}" wrapping="false"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="idProcessType">
+					<Label id="idProcessTypeLabel" text="{i18n>processType}"/>
+					<table:template>
+						<Text id="idProcessTypeValue" 
+                                text="{shared>service_order_type}" wrapping="false"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="idPriority">
+					<Label id="idPriorityLabel" text="{i18n>priorityOpenServiceOrders}"/>
+					<table:template>
+						<Text id="idPriorityValue" text="{shared>service_priority}" wrapping="false"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="idContactPerson">
+					<Label id="idContactPersonLabel" text="{i18n>contactPerson}"/>
+					<table:template>
+						<Text id="idContactPersonValue" text="{shared>contact_person_name}" wrapping="false"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="idStartDate">
+					<Label id="idStartDateLabel" text="{i18n>startDate}"/>
+					<table:template>
+						<Text id="idStartDateText" 
+                                text="{path: 'shared>start_date', type: 'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium', UTC: true} }"/>
+					</table:template>
+				</table:Column>
+				<table:Column id="idDueDate">
+					<Label id="idDueDateLabel" text="{i18n>dueDate}"/>
+					<table:template>
+						<Text id="idDueDateValue" text="{shared>due_date}" wrapping="false"/>
+					</table:template>
+				</table:Column>
+			</table:columns>
+		</table:Table>
+	</VBox>
+</core:FragmentDefinition>

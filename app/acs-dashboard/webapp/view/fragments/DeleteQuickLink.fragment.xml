@@ -1,0 +1,23 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog id="idDeleteQuickLinkDialog" showHeader="false" contentWidth="28%">
+        <subHeader>
+            <OverflowToolbar id="idDeleteQuickLinkOverflowToolbar" class="sapSubHeaderHeight">
+                <core:Icon id="idDeleteQuickLinkIcon" src="sap-icon://sys-help" />
+                <Title text="{i18n>confirmation}" id="idDeleteQuickLinkTitle" />                        
+            </OverflowToolbar>
+        </subHeader> 
+        <content>
+            <Panel id="idDeleteQuickLinkPanel" class="sapUiSmallMarginTop">
+                <Text id="idDeleteQuickLinkPanelText" />
+           </Panel>
+        </content>
+        <buttons>
+            <Button id="idDeleteQuickLinkButton" text="{i18n>delete}" type="Reject" press="onPressDeleteQuickLink" />
+            <Button id="idCancelQuickLinkButton" text="{i18n>cancel}" press="onPressCancelQuickLink" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

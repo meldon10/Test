@@ -1,0 +1,64 @@
+---
+spring:
+  web.resources.static-locations: "file:./app"
+
+cds:
+  security:
+    authenticateUnknownEndpoints: false
+
+---
+spring:
+  config.activate.on-profile: default
+  datasource:
+    url: "jdbc:sqlite:file::memory:?cache=shared" 
+    driver-class-name: org.sqlite.JDBC
+    initialization-mode: always
+    hikari:
+      maximum-pool-size: 1
+APPROUTER_MODULE_NAME: acs-ar
+vcap:
+  services:
+    acs-destination:
+      credentials:
+        xsappname: "cloned0dfdc461f7c4088b6416f54a3208d95!b35778|destination-xsappname!b433"
+    acs-connectivity:
+      credentials:
+        xsappname: "clone185aa1039f0e414eb34aa98654c45d75!b35778|connectivity!b137"
+    acs-html5-repo-runtime:
+      credentials:
+        uaa:
+          xsappname: "dummy-value"
+    acs-portal:
+      credentials:
+        uaa:
+          xsappname: "dummy-value"
+    acs-saas-registry:
+      credentials:
+        appName: "acs-service-management-ui"
+    acs-credential-store:
+      credentials:
+        password: "uCgkNTtYpYeqixdrhwKxUgFa18gUYcL0vVghJm4RVfJXefGDdromiW81MyJfGo6e.0.pfBMHExnBNAqlG4zTioYMQeXiBb3UA7mMjgPf7ExAKM="
+        encryption:
+          client_private_key: "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQChWp+gQnwbp5yISy7iQ5WWlrC6Z1Wtm19nhtyLAzMhISua03Et7w4jfdl0D9dAPIk5OwgH2uhEJRJR84rrzo9abVSP7Qt2PoFBPxP7p5IO75xIupH7t6qvdU7gFnZu3GZgf5bGkspqfg/MwaG9/CT5H12WGPgHRxAYNdWoALFIbJ3GkaUJeB7cArq3qHeIdMX3Nnd+h+yovRWJ+jTFs0ENg2hREyfk5o63bHtf9koYJm8wYBXLSE4sOgAVYqo72Ywt3KKq64P/pnKgejW31enV/wGWdo0JSHBZO2PHQn8qvU+cun/0pmQPODx5XaYF+QS1h+bZwAEIORhyjn/eRhhnAgMBAAECggEBAJxXX+X7pZ9yJ7TUDGiGjdHszu6+o4Dk1GtOfDFh90+5gTOyfq7APBXdoi7YDnwaa+f9L8nUrUsiFH89mLTlX3eCCfau+3UmGT2sLeOgOWCpgOfjhwG8s/DwnG16tmSyv6vu1JwxrVnELfD7CYo5X2XXo2mFZgY/L/QVbaEskpqVwAYmbbNaWB2B1PHDvqjtU955i2gbPLBwPkT7UZEWHk5G/epl0+EMmeSDfNElAa2FJn7vwDXcR7Xxnm+cH3ZJE1YNEYcf+pm3ghjKjPnIFa5OISQKLFJZ1aYVT+EEmj6j0o+d/MoNKn+lPYAcp8A2TDqrvxoaCX83+sYqqLI+VkECgYEA4CsSZxcXosa2WjjSB4cQ0vSarYCINsQOGCHMJYNOv2lLYNP5cbEizzrvRQ9cP7QVKmgBfQULMx9h71dkQbqWfLVwCXXDsdb0DplCUkjDY5txbg5JZNdaH9U6jHJIIB8gf+fX0s1OIPj3jzT7DoAn+vSgC4A2GSQM4l5dfy/ATUcCgYEAuEQjWqjW37d0cpLzo7bCtoLjFuSmkXyatXszrmYFB0YYhuBX3wuOpnVsrISXf1pLw8OwIszS9rvvlEdg88f9xAJxVUPfTPQfW2ls6Sc0Ki51ob7/ovt4O93x2Cg0/sxHSajgrNbOFBXQdAgN2gq5gT3FdzGGssvaadumGace6+ECgYEAuuwvlDb1Ro5cUC9BM3W02bONp0+eRcyF1CmaiU1MxN+QM1WOkvcaB6MlEXkVeyk23P2NACrMg/yPNXyx5P0pryO8IKdKX2jWabXyT5rNEqnzk8nl+Wh5hkHPaH2DFwXdm8o/dVAs7eGszIVpM1Y6AFErg2uNsLkW5Uu6uuuedtECgYB0W1KX5RYKnyYBU5pWPwolhfEwe6JTLIPlJa806WczeKf0Q6Y5SmsB4hSFvBSObs55CBEpaH2vIG3hDFHEnv030PMQDJPtXBqQ9rm3YPIn0L6nLJzwpir+YuBcxsbwPr6lXObDPcFUHZJMMunMTgll+0O+SJ/uN5vsTK9Oc6GrAQKBgHuBLUoE+C/6jrxY5Vrqrf4I7RFOFucbxW+4XDV1I3zmQE3cBrzl7c499EwIXt46O4BwOtq0uuoX8tzS3K921od1z2PP5jpEgB2u3D9wbKtwIMFD9a/y778zkKT2Y4DvuKTlhYXMnLhiOSrjgIHUwfyQq3cqUmJs3XL7Ntaleb4V"
+        url: "https://credstore.cfapps.sap.hana.ondemand.com/api/v1/credentials"
+        username: "b063c0a5-54f1-492f-9688-cf3b4b341620.0.Xy8HzsYwEXrHHOpv2ZQPSVWOjrwh7MAqcGaT1Ckl+Os="
+  application:
+    cf_api: "https://api.cf.sap.hana.ondemand.com"
+    application_uris:
+      - "acs-mt-development-acs-service-management.cfapps.sap.hana.ondemand.com"
+    space_name: "development"
+    organization_name: "acs-mt"
+    space_id: "5b01be08-edf4-442b-975c-5750d1e2d992"
+    organization_id: "bfeda962-39ed-4d8a-af50-3dc700719ae1"
+cds:
+  security:
+    authenticateUnknownEndpoints: false
+---
+constants:
+  GEOCODE_API_URI : "https://geocode.search.hereapi.com/v1/geocode?q="
+  GEOCODEAPI_KEY :  "&apiKey=21cjM2ujVKnyuiEXVoMEVoJ9bknopL0Kt0kTmSBjHhA"
+  DEFAULT_URI : "ACSDESTINATION"
+  S4HANA_CLOUD_DESTINATION : "CC8"
+  SERVICE_ORDER_SEARCH : "/sap/bc/ui2/flp#ServiceOrder-search?sap-ui-tech-hint=WCF"
+  SERVICE_ORDER_CREATE : "/sap/bc/ui2/flp#ServiceOrder-create?sap-ui-tech-hint=WCF"
+  SERVICE_CONTRACT_CREATE : "/sap/bc/ui2/flp#ServiceContract-create?sap-ui-tech-hint=WCF"

@@ -1,0 +1,59 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.uxap"
+	xmlns:layout="sap.ui.layout"
+	xmlns:goals="com.sap.acs.ui.dashboard.controller.GoalsBlock"
+	xmlns:m="sap.m">
+	<ObjectPageLayout id="idCustomerDetailObjectPageLayout" showTitleInHeaderContent="true" upperCaseAnchorBar="false" class="sapHeaderTitle sapUiMediumMarginTop">
+		<headerTitle id="idCustomerDetailHeaderTitle">
+			<ObjectPageDynamicHeaderTitle id="idCustomerDetailObjectPageDynamicHeaderTitle">
+				<expandedHeading id="idExpandedHeadingCustomerDetail">
+					<m:Title id="idFullName" text="{shared>/situationTableCustomerDetails/industry}" wrapping="true"/>
+				</expandedHeading>
+				<snappedHeading id="idSnappedHeadingCustomerDetail">
+					<m:FlexBox id="idDFlexBoxFullNameSnapped" fitContainer="true" alignItems="Center">
+						<m:Title id="idFullNameSnapped" text="{shared>/situationTableCustomerDetails/industry}" wrapping="true" />
+					</m:FlexBox>
+				</snappedHeading>
+				<expandedContent id="idExpandedContentCustomerDetail">
+					<m:Text id="idCityExpanded" text="{shared>/situationTableCustomerDetails/city} , {shared>/situationTableCustomerDetails/country}"/>
+				</expandedContent>
+				<snappedContent id="idSnappedContentCustomerDetail">
+					<m:Text id="idCitySnapped" text="{shared>/situationTableCustomerDetails/city} , {shared>/situationTableCustomerDetails/country}"/>
+				</snappedContent>
+				<snappedTitleOnMobile id="idSnappedTitleOnMobileCustomerDetail">
+					<m:Title id="idCityMobile" text="{shared>/situationTableCustomerDetails/city} , {shared>/situationTableCustomerDetails/country}"/>
+				</snappedTitleOnMobile>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox id="idFlexBoxCustomerDetail" wrap="Wrap">
+				<m:Image id="idImageCompanyLogo" src="{shared>/imagesCustomerDetails/companyLogo}" displaySize="L" class="sapUiTinyMarginEnd"/>
+				<layout:VerticalLayout class="sapUiMediumMarginBeginEnd">
+					<m:ObjectStatus id="idIndustry" title="{i18n>nameCustomerDetail}" text="{shared>/situationTableCustomerDetails/fullname}"/>
+					<m:ObjectStatus id="idEmail" title="{i18n>email}" text="{shared>/situationTableCustomerDetails/emailaddress}"/>
+					<m:ObjectStatus id="idPhoneNumber" title="{i18n>phoneNumber}" text="{shared>/situationTableCustomerDetails/phonenumber}"/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout id="idServiceOrderVericalLayout" class="sapUiMediumMarginBeginEnd">
+					<layout:layoutData>
+						<ObjectPageHeaderLayoutData id="idCustomerDetailObjectPageHeader" visibleL="false" showSeparatorAfter="true"/>
+					</layout:layoutData>
+					<m:Label id="idServiceOrderLabel" text="{i18n>serviceOrders}"/>
+					<m:ObjectNumber id="idServiceOrderObjectNumber" class="sapMObjectNumberLarge" number="{shared>/situationTableCustomerDetails/service_order_length}" state="Error" active="true" press="onPressServiceOrder"/>
+				</layout:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+		<sections class="situationTableSection" id="idSituationTableSection">
+			<ObjectPageSection id="idCustomerDetailObjectPageSection">
+				<subSections id="idCustomerDetailSubSection">
+					<ObjectPageSubSection id="idCustomerDetailObjectPageSubSection">
+						<blocks id="idCustomerDetailBlock">
+							<core:Fragment id="idSituationTableFragment" fragmentName="com.sap.acs.ui.dashboard.view.fragments.SituationTable" type="XML" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</core:FragmentDefinition>

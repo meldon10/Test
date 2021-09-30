@@ -1,0 +1,1 @@
+sap.ui.define(["adminconfiguration/adminconfiguration/controller/BaseController"],function(n){"use strict";return n.extend("adminconfiguration.adminconfiguration.controller.App",{onInit:function(){}})});

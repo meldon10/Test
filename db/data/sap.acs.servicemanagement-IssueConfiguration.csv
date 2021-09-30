@@ -1,0 +1,4 @@
+ID,color,minimumValue,maximumValue,customConfiguration
+1,Red,10,Max,
+2,Amber,6,9,
+3,Green,0,5,

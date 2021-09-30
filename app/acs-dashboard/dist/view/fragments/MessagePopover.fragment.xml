@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <MessagePopover 
+        id="idMessagePopover" 
+        beforeClose="onBeforeCloseMessagePopover"
+        beforeOpen="onBeforeOpenMessagePopOver"
+        items="{
+            path: 'message>/item'
+        }">
+        <MessageItem title="{message>title}" type="{message>type}" description="{message>description}" 
+            id="idMessageItem" />            
+    </MessagePopover>
+</core:FragmentDefinition>

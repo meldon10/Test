@@ -1,0 +1,19 @@
+INSERT INTO "QuickLinksService_link" (
+    createdAt,
+    createdBy,
+    modifiedAt,
+    quickLink_description,
+    QUICKLINK_ID,
+    quickLink_name,
+    quickLink_URL
+  )
+VALUES
+  (
+    'createdAt:TIMESTAMP_TEXT',
+    'createdBy:NVARCHAR(255)',
+    'modifiedAt:TIMESTAMP_TEXT',
+    'quickLink_description:NVARCHAR(250)',
+    'QUICKLINK_ID:NVARCHAR(36)',
+    'quickLink_name:NVARCHAR(50)',
+    'quickLink_URL:NVARCHAR(250)'
+  );

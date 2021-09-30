@@ -1,0 +1,87 @@
+general:
+  buildTool: 'mta'
+  productiveBranch: 'main'
+  gitHttpsCredentialsId: 'hyperspace-github-tools-sap-i035634'
+  githubApiUrl: 'https://github.tools.sap/api/v3'
+  githubServerUrl: 'https://github.tools.sap'
+  vaultAppRoleTokenCredentialsId: 'vault-approle-role-id-1242-3874'
+  vaultAppRoleSecretTokenCredentialsId: 'vault-approle-secret-id-accessor-1242-3874'
+  vaultBasePath: 'piper/PIPELINE-GROUP-1242'
+  vaultPipelineName: 'PIPELINE-3874'
+  vaultServerUrl: 'https://vault.tools.sap'
+  vaultNamespace: 'ies/hyperspace/pipelines'
+stages:
+  Confirm:    
+    manualConfirmationTimeout: 1
+  Central Build:
+    sonarExecuteScan: true
+    executeSonarScan: true
+    skipBuild: false
+  Performance:
+    cfCredentialsId: hyperspace-scpcf-p200414277
+    cfApiEndpoint: https://api.cf.sap.hana.ondemand.com
+    cfOrg: acs
+    cfSpace: performance
+    deployTool: 'mtaDeployPlugin'
+    mtaDeployParameters: '--strategy blue-green -f --version-rule ALL --abort-on-error'
+    deployType: 'blue-green'
+    testServerUrl: https://www.google.com/
+  Acceptance:
+    cfCredentialsId: hyperspace-scpcf-p200414277
+    cfApiEndpoint: https://api.cf.eu10.hana.ondemand.com
+    cfOrg: acs-eu10-acceptance
+    cfSpace: acceptance
+    deployTool: 'mtaDeployPlugin'
+    mtaDeployParameters: '--strategy blue-green -f --version-rule ALL --abort-on-error'
+    deployType: 'blue-green'
+    testServerUrl: https://www.google.com/
+  Release:
+    cfCredentialsId: hyperspace-scpcf-p200414277
+    cfApiEndpoint: https://api.cf.eu10.hana.ondemand.com
+    cfOrg: acs-eu10-productive
+    cfSpace: live
+    deployTool: 'mtaDeployPlugin'
+    mtaDeployParameters: '--strategy blue-green -f --version-rule ALL --abort-on-error'
+    deployType: 'blue-green'
+    testServerUrl: https://www.google.com/
+steps:
+  handlePipelineStepErrors:
+    failOnError: false
+  setupPipelineEnvironment:
+    gitHttpsUrl: 'https://github.tools.sap/AssetCentricService/service-management.git'
+  executeBuild:
+    xMakeJobName: 'ght-${githubOrg}-${githubRepo}-SP-MS-common'
+    xMakeNovaCredentialsId: 'hyperspace-xmake-p2004142777'
+  whitesourceExecuteScan:
+    scanType: ua
+    stashContent:
+    - buildDescriptor
+    - opensourceConfiguration
+    - classFiles
+    - tests
+    - source
+    whitesourceUserTokenCredentialsId: 'hyperspace-whitesource-acs-service-management-1-0'
+    whitesourceProductName: 'SHC - ACS-SERVICE-MANAGEMENT-1-0'
+    whitesourceProductToken: '7838f3f791604637a8a33ba583d5f21366e0c8809eaf4e9fb300fd8842dfc84c'
+    verbose: true
+  sonarExecuteScan:
+    serverUrl: 'https://sonar.wdf.sap.corp'
+    sonarTokenCredentialsId: 'hyperspace-sonar-i054095'
+    instance: 'SAP SonarQube Enterprise'
+  fortifyExecuteScan:
+    buildTool: 'maven'
+    fortifyCredentialsId: 'fortifytechuser'
+    serverUrl: 'https://fortify.tools.sap/ssc'
+    src: ['**/*.xml', '**/src/main/java/**/*', '**/src/main/resources/**']
+    exclude: ['**/target/**/*', '**/unit-tests/**/*', '**/integration-tests/**/*', '**/performance-tests/**/*', '**/src/test/**/*', '**/s4hana_pipeline/**/*']    
+    projectName: 'ACS-service-management'
+    autoCreate: true
+  sapCumulusUpload:
+    pipelineId: '6ccaea28-68eb-46a4-af99-0a2d22a2ef99'
+    cumulusFileCredentialsId: 'hyperspace-cumulusupload-1242'
+  checkmarxExecuteScan:
+    checkmarxCredentialsId: 'CheckmarxTechUser'
+    projectName: 'service-management'
+    preset: '100023'
+    teamName:  '/CxServer/SP/SAP/INTELLIGENT_ASSET_MANAGEMENT_FACTSHEET/ASSET_CENTRICSERVICE_MNGMT'    
+    filterPattern: "!**/node_modules/**, !**/.xmake/**, !**/*_test.go, !**/vendor/**/*.go, **/*.html, **/*.xml, **/*.go, **/*.py, **/*.js, **/*.scala, **/*.ts"

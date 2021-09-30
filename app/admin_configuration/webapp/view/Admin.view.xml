@@ -1,0 +1,65 @@
+<mvc:View
+   xmlns:m="sap.m"
+    controllerName="adminconfiguration.adminconfiguration.controller.Admin"
+   xmlns="sap.ui.table"
+   xmlns:core="sap.ui.core"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:f="sap.ui.layout.form"
+   height="100%">
+      <m:Page id="idAdmin" title="{i18n>businessConfiguration}">
+         <m:content id="idAdminContent">
+            <m:VBox class="sapUiMediumMargin">
+               <m:Title id="idDefineIssueThreshold" text="{i18n>defineIssueThreshold}" class="sapUiTinyMarginBottom"></m:Title>
+               <Table 
+                  id="idAdminTable"
+                  rows="{path: 'businessConfigurationData>/colorConfiguration'}"
+                  selectionMode="None"
+                  visibleRowCount="3"
+                  paste="onPaste"
+                  ariaLabelledBy="title">
+                  <columns id="idBusinessConfigColumns">
+                     <Column id="idColorColumn">
+                        <m:Label id="idColor" text="{i18n>color}" />
+                        <template id="idColorValueTemplate">
+                           <m:Text id="idColorValue" text="{businessConfigurationData>color}" wrapping="false" />
+                        </template>
+                     </Column>
+                     <Column id="idMinimumIssueColumn">
+                        <m:Label id="idMinIssue" text="{i18n>minIssue}" />
+                        <template id="idMinimumIssueTemplate">
+                           <m:Input id="idMinimumValueInput"
+                              value="{
+                              path: 'businessConfigurationData>minimumValue',
+                              type: 'sap.ui.model.type.String',
+                              formatOptions: {
+                              groupingEnabled: false,
+                              groupingSeparator: ',',
+                              decimalSeparator: '.'
+                              },
+                              constraints : {
+                              minLength: 3,
+                              maxLength: 10
+                              }
+                              }"
+                              valueState="{businessConfigurationData>valueState}"
+					          valueStateText="{businessConfigurationData>valueStateText}"
+                              liveChange="onMinValueChange" enabled="{businessConfigurationData>minimumValueEnabled}"/>
+                        </template>
+                     </Column>
+                     <Column id="idMaximumIssueColumn">
+                        <m:Label id="idMaxIssue" text="{i18n>maxIssue}" />
+                        <template id="idMaximumIssueTemplate">
+                           <m:Input id="idMaxValues" value="{businessConfigurationData>maximumValue}" 
+                              change="onMaxValueChange" enabled="{businessConfigurationData>maximumValueEnabled}"/>
+                        </template>
+                     </Column>
+                  </columns>
+               </Table>
+               <m:FlexBox alignItems="End" justifyContent="End" id="idFooter" class="sapUiSmallMarginTop">
+                  <m:ToolbarSpacer/>
+                  <m:Button id="idApplyBtn" type="Accept" text="{i18n>apply}" press="onPressUpdate" enabled="{businessConfigurationData>/btnEnable}"></m:Button>
+               </m:FlexBox>
+            </m:VBox>
+         </m:content>
+      </m:Page>
+</mvc:View>

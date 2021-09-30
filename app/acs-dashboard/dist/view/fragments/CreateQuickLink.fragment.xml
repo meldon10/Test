@@ -1,0 +1,42 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog id="idCreateQuickLinkDialog" resizable="true" 
+        draggable="true" showHeader="false" contentWidth="32%" 
+        beforeOpen="onBeforeOpenCreateQuickLinkDialog" beforeClose="onBeforeCloseCreateQuickLinkDialog">
+    	<form:SimpleForm
+            id="idSimpleFormCreateQuickLinkDialog"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="{shared>/createQuickLinks/createUpdateQuickLinkTitle}"
+			labelSpanXL="12"
+			labelSpanL="12"
+			labelSpanM="12"
+			labelSpanS="12"
+			adjustLabelSpan="true"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false">
+			<form:content>
+				<Label id="idQuickLinksNameLabel" text="{i18n>quickLinkNameInput}" required="true"/>
+				<Input id="idQuickLinksNameInput" placeholder="{i18n>placeholderLinkName}" maxLength="25" liveChange="onLiveChangeCreateQuickLinks"
+                    value="{shared>/createQuickLinks/quickLinkName}" valueState="{shared>/createQuickLinks/valueStateNameQuickLinks}" valueStateText="{shared>/createQuickLinks/valueStateTextNameQuickLinks}" />
+				<Label id="idQuickLinksUrlLabel" text="{i18n>quickLinkUrlInput}" required="true" class="sapUiSmallMarginTop" />
+                <Input id="idQuickLinksUrlInput" placeholder="{i18n>placeholderLinkUrl}" liveChange="onLiveChangeCreateQuickLinks"
+                    value="{shared>/createQuickLinks/quickLinkUrl}" valueState="{shared>/createQuickLinks/valueStateUrlQuickLinks}" valueStateText="{shared>/createQuickLinks/valueStateTextUrlQuickLinks}" />
+			</form:content>
+		</form:SimpleForm>
+        <buttons>
+            <Button id="idQuickLinkAddButton" text="Add" type="Emphasized" press="onPressCreateQuickLinksModifyAdd" visible="{visibility>/AddQuickLinkButton}"/>
+             <Button id="idQuickLinkSaveutton" text="Save" type="Emphasized" press="onPressEditQuickLinkModify" visible="{visibility>/SaveQuickLinkButton}"/>
+            <Button id="idQuickLinkCloseButton" text="{i18n>close}" press="onPressCloseQuickLink"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

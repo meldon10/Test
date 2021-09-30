@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout">
+    <Panel id="idQuickLinksPanel" height="100%" class="sapUiNoContentPadding sapQuickLinkWorklistPanel">
+      <headerToolbar>
+             <Toolbar id="idQuickLinkToolbar">
+			 <Text id="idQuickLinkHeader" text="{i18n>quickLinks}"/>
+             <ToolbarSpacer id="idQuickLinkToolbarSpacer"/>
+             <Button id="idQuickLinkCreateButton" press="onPressCreateQuickLinksAdd" icon="sap-icon://add" type="Transparent"/>
+            </Toolbar>
+		</headerToolbar>
+        <content>
+                <List items="{path: 'shared>/quickLink'}" id="idQuickLinkList" noDataText="{i18n>noQuickLinkAdd}">
+                    <CustomListItem  id="idQuickLinkCustomListItem">
+                        <FlexBox alignItems="Start" justifyContent="SpaceBetween" class="sapUiTinyMarginTopBottom" 
+                             id="idQuickLinkFlexBox">
+                            <VBox id="idQuickLinkVBoxDescription" width="70%" class="sapUiTinyMarginTop">
+                                <Link text="{shared>quickLink_name}" press="onPressLink" class="sapUiSmallMarginBegin" wrapping="true" id="idQuickLinkLink" subtle="true"/>
+                            </VBox>
+                            <FlexBox alignItems="End" justifyContent="SpaceBetween" id="idQuickLinkFlexBox1">
+                                <Button type="Transparent" press="onPressEditQuickLink" icon="sap-icon://edit" width="10%" 
+                                  id="idQuickLinkEditButton"/>
+                                <Button type="Transparent" press="onPressDeleteQuickLinkDialog" icon="sap-icon://delete" width="10%" 
+                                 class="sapUiTinyMarginEnd" id="idQuickLinkDeleteButton"/>
+                            </FlexBox>
+                        </FlexBox>
+                    </CustomListItem>
+                </List>
+        </content>
+    </Panel>
+</core:FragmentDefinition>

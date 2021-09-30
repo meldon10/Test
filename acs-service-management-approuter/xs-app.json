@@ -1,0 +1,31 @@
+{
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/odata/v4/(.*)",
+      "authenticationType": "xsuaa",
+      "destination": "odata_dest"
+    },
+
+    {
+      "source": "^/resources/sap/dfa/help/(.*)$",
+      "target": "$1",
+      "destination": "web-assistant-framework",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/sap/dfa/help/(.*)$",
+      "target": "$1",
+      "destination": "web-assistant-content",
+      "authenticationType": "xsuaa"
+    },
+
+    {
+      "source": "^/odata/v4/(.*)$",
+      "target": "/odata/v4/$1",
+      "authenticationType": "none",
+      "destination": "odata_dest"
+    }
+  ],
+  "welcomeFile": "cp.portal/site"
+}

@@ -1,0 +1,23 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog id="idDeleteTaskDialog" showHeader="false" contentWidth="28%">
+        <subHeader>
+            <OverflowToolbar id="idDeleteTaskOverflowToolbar" class="sapSubHeaderHeight">
+                <core:Icon id="idDeleteTaskIcon" src="sap-icon://sys-help" />
+                <Title text="{i18n>confirmation}" id="idDeleteTaskTitle" />                        
+            </OverflowToolbar>
+        </subHeader> 
+        <content>
+            <Panel id="idDeleteTaskPanel" class="sapUiSmallMarginTop">
+                <Text id="idDeleteTaskPanelText" />
+           </Panel>
+        </content>
+        <buttons>
+            <Button id="idDeleteButton" text="{i18n>delete}" type="Reject" press="onPressDeleteTask" />
+            <Button id="idCancelButton" text="{i18n>cancel}" press="onPressCancel" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

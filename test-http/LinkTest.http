@@ -1,0 +1,42 @@
+### Get Link
+
+GET http://localhost:8080/odata/v4/QuickLinksService/quickLink?$filter=quickLink_name eq 'Test Link A'
+
+### Get Link
+
+GET http://localhost:8080/odata/v4/QuickLinksService/quickLink?$filter=createdBy eq 'C581425-243-2882'
+
+
+
+### Get Link
+
+
+GET http://localhost:8080/odata/v4/QuickLinksService/quickLink
+### Create Link
+POST http://localhost:8080/odata/v4/QuickLinksService/quickLink HTTP/1.1
+Content-Type : application/json
+
+{
+     "quickLink_name":"Test Link P",
+  "createdBy" :"C5432151-282726-2992",
+    "quickLink_URL": "https://www.google.com"
+}
+
+
+### Update Link
+PATCH  http://localhost:8080/odata/v4/QuickLinksService/quickLink(9c86e3b4-10c1-474e-99cb-38724829323d) HTTP/1.1
+Content-Type: application/json
+
+{   
+     "quickLink_name"        : "Test Link Test Data-abhsihek",
+   
+    "quickLink_URL": "https://www.google.11111.com"
+}
+
+
+###Delete Link
+DELETE  http://localhost:8080/odata/v4/QuickLinksService/quickLink(cb768cda-464c-47c1-b3be-dfdccb600271) HTTP/1.1
+
+##### getDestination
+GET http://localhost:8080/odata/v4/QuickLinksService/destinationURL
+

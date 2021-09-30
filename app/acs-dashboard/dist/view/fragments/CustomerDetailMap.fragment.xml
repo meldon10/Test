@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:vbm="sap.ui.vbm"
+	xmlns:vk="sap.ui.vk"
+	xmlns:table="sap.ui.table"
+	xmlns:layout="sap.ui.layout">
+	<VBox id="idMapVBox" class="sapUiHeight">
+		 <vk:MapContainer id="idCustomerDetailMapContainer" contentChange="onMapContentChange" showSelection="{visibility>/mapSelectionCustomerDetails}">
+			<vk:content id="idMapContent">
+				<vk:ContainerContent id="idMapContainerContent" title="{i18n>geoMap}" icon="sap-icon://chart-table-view">
+					<vk:content id="idGeoMapContent">
+						<vbm:GeoMap id="idmap" enableAnimation="false">
+							<vbm:vos id="idGeoMapVos">
+								<vbm:Spots items="{shared>/mapSpotsCustomerDetails}">
+									<vbm:Spot id="idMapSpots" position="{shared>geocode}" tooltip="{shared>industry}" type="{path: 'shared>colorSpots', formatter: '.formatter.getColor'}"
+                                    click="onClickCustomerDetailSpot"/>
+								</vbm:Spots>
+							</vbm:vos>
+						</vbm:GeoMap>
+					</vk:content>
+				</vk:ContainerContent>
+				<vk:ContainerContent id="idMapContainerAnalytic" title="{i18n>analyticalMap}" icon="sap-icon://bar-chart">
+					<vk:content id="idAnalyticalMapContent">
+						<vbm:AnalyticMap id="idMapAnalytic" enableAnimation="false">
+							<vbm:vos id="idAnalyticalMapVos">
+								<vbm:Circles items="{shared>/mapSpotsCustomerDetails}">
+									<vbm:Circle id="idMapCircles" position="{shared>geocode}" colorBorder="rgba(255,255,255,0.3)" tooltip="{shared>industry}"
+                                    radius="6" color="{path: 'shared>colorSpots', formatter: '.formatter.getColorAnalytic'}"  
+                                    click="onClickCustomerDetailSpot"/>
+								</vbm:Circles>
+							</vbm:vos>
+						</vbm:AnalyticMap>
+					</vk:content>
+				</vk:ContainerContent>
+			</vk:content>
+		</vk:MapContainer>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:table="sap.ui.table">
+    <Panel height="100%" class="sapUiNoContentPadding sapMapTodoPanel" >
+        <headerToolbar>
+            <OverflowToolbar id="idMyToDoOverFlowToolbar">
+                <Text id="idMyToDoHeaderTitle" text="{i18n>myToDoList}" />
+                <ToolbarSpacer id="idMyToDoToolbarSpacer" />
+                <Button id="idMyToDoCreateButton" press="onPressCreateMyToDoTask" 
+                    icon="sap-icon://add" type="Transparent" />
+            </OverflowToolbar>
+        </headerToolbar>
+        <content>
+            <List
+                id="idMyToDoList"
+                items="{
+                    path: 'shared>/myToDoList',
+                    sorter: {path: 'due_by', descending: true}
+                }" 
+                noDataText="{i18n>noTaskAdd}">
+                <CustomListItem id="idMyToDoCustomListItem" highlight="{path: 'shared>priority', formatter: '.formatter.getHighlighter'}">
+                    <FlexBox id="idMyToDoFlexBox" alignItems="Start" justifyContent="SpaceBetween">
+                        <VBox id="idMyToDoVBox" class="sapUiSmallMarginBegin" width="70%">
+                            <Text id="idMyToDoText" text="{shared>task_name}" wrapping="true" />
+                            <Label id="idMyToDoDate" text="{path: 'shared>due_by', type: 'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium', UTC: true}, formatter: '.formatter.getDateText' }" wrapping="true" />
+                        </VBox>
+                        <Button id="idMyToDoEditButton" type="Transparent" press="onPressChangeMyToDoList" icon="sap-icon://edit" width="10%" />
+                        <Button id="idMyToDoDeleteButton" type="Transparent" press="onPressDeleteMyToDoTask" icon="sap-icon://delete" width="10%" 
+                            class="sapUiTinyMarginEnd "/>
+                    </FlexBox>
+                </CustomListItem>
+            </List>
+        </content>
+     </Panel>
+</core:FragmentDefinition>
+

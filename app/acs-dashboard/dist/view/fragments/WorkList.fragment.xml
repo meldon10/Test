@@ -1,0 +1,105 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:table="sap.ui.table">
+    <Panel expandable="false" expanded="true">
+        <content>
+            <OverflowToolbar id="idWorklistOverflowToolbar">
+            <ToolbarSpacer id="idWorklistToolbarSpacer"/>
+                <SegmentedButton selectedKey="openServiceOrder" 
+                    selectionChange="onSelectionChangeSegmentedButton" id="idWorklistSegmentedButton">
+                    <items>
+                        <SegmentedButtonItem key="openServiceOrder" text="{i18n>openServiceOrder}" 
+                            id="idOpenServiceOrder"/>
+                        <SegmentedButtonItem key="myopenTask" text="{i18n>openTask}"
+                            id="idMyopenTask"/>
+                    </items>           
+                </SegmentedButton>
+            <ToolbarSpacer/>
+            </OverflowToolbar>
+            <table:Table id="idOpenServiceOrderTable"
+                visibleRowCountMode="Auto"
+                selectionMode="None"
+                rows="{path: 'shared>/openServiceOrder', sorter: {path: 'Priority', descending: 'false'}}"
+                visible="{visibility>/OpenServiceOrderTableVisibility}">
+                <table:columns>
+                    <table:Column id="idServiceOrderIDColumn" width="10rem">
+                        <Label id="idServiceOrderIDLabel" text="{i18n>serviceOrderID}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idServiceOrderIDText" 
+                                text="{shared>ServiceOrderID}" wrapping="false"/>
+                        </table:template>                                          
+                    </table:Column> 
+                    <table:Column id="idDescriptionColumn">
+                        <Label id="idDescriptionLabel" text="{i18n>descriptionOpenServiceOrders}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idDescriptionText" 
+                                text="{shared>Description}"/>
+                        </table:template>                                          
+                    </table:Column>
+                    <table:Column id="idStatusColumn" width="9rem">
+                        <Label id="idStatusLabel" text="{i18n>statusOpenServiceOrders}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idStatusText" 
+                                text="{shared>Status}"/>
+                        </table:template>                                          
+                    </table:Column>
+                    <table:Column id="idPriorityColumn" width="9rem">
+                        <Label id="idPriorityLabel" text="{i18n>priorityOpenServiceOrders}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idPriorityText" 
+                                text="{shared>PriorityText}"/>
+                        </table:template>                                          
+                    </table:Column>
+                    <table:Column id="idDueByColumn" width="9rem">
+                        <Label id="idDueByLabel" text="{i18n>dueByOpenServiceOrders}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idDueByText" 
+                                text="{path: 'shared>DueBy', type: 'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium', UTC: true} }"/>
+                        </table:template>                                          
+                    </table:Column>
+                </table:columns>       
+            </table:Table>
+            <table:Table id="idOpenTaskTable"
+                visibleRowCountMode="Auto"
+                selectionMode="None"
+                rows="{path: 'shared>/openTask', sorter: {path: 'Priority', descending: 'false'}}"
+                visible="{visibility>/OpenTaskTableVisibility}">
+                <table:columns>
+                    <table:Column id="idTaskIDColumn" width="10rem">
+                        <Label id="idTaskIDLabel" text="{i18n>taskID}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idTaskIDText" 
+                                text="{shared>TaskID}" wrapping="false"/>
+                        </table:template>                                          
+                    </table:Column> 
+                    <table:Column id="idOpenTaskDescriptionColumn">
+                        <Label id="idOpenTaskDescriptionLabel" text="{i18n>descriptionOpenTasks}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idOpenTaskDescriptionText" 
+                                text="{shared>Description}"/>
+                        </table:template>                                          
+                    </table:Column>
+                    <table:Column id="idOpenTaskStatusColumn" width="9rem">
+                        <Label id="idOpenTaskStatusLabel" text="{i18n>statusOpenTasks}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idOpenTaskStatusText" 
+                                text="{shared>Status}"/>
+                        </table:template>                                          
+                    </table:Column>
+                    <table:Column id="idOpenTaskPriorityColumn" width="9rem">
+                        <Label id="idOpenTaskPriorityLabel" text="{i18n>priorityOpenTasks}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idOpenTaskPriorityText" 
+                                text="{shared>PriorityText}"/>
+                        </table:template>                                          
+                    </table:Column>
+                    <table:Column id="idOpenTaskDueByColmn" width="9rem">
+                        <Label id="idOpenTaskDueByLabel" text="{i18n>dueByOpenTasks}" wrapping="true"/> 
+                        <table:template>
+                            <Text id="idOpenTaskDueByText" 
+                                text="{path: 'shared>DueBy', type: 'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium', UTC: true} }"/>
+                        </table:template>                                          
+                    </table:Column>
+                </table:columns>       
+            </table:Table>
+        </content>
+    </Panel>
+</core:FragmentDefinition>

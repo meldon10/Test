@@ -1,0 +1,1 @@
+using AdminConfiguration as service from '../../srv/cds/admin-configuration-service';

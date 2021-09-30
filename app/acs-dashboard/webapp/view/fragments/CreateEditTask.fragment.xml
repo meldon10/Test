@@ -1,0 +1,54 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form">
+    <Dialog id="idCreateEditTaskDialog" resizable="true" 
+        draggable="true" showHeader="false" contentWidth="32%" 
+        beforeOpen="onBeforeOpenCreateEditTaskDialog" beforeClose="onBeforeCloseCreateEditTaskDialog">
+    	<form:SimpleForm
+            id="idSimpleFormCreateEditTask"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="{shared>/createEditTask/createUpdateToDoFormTitle}"
+			labelSpanXL="12"
+			labelSpanL="12"
+			labelSpanM="12"
+			labelSpanS="12"
+			adjustLabelSpan="true"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false">
+			<form:content>
+				<Label id="idTaskNameLabel" text="{i18n>taskName}" required="true" />
+				<Input id="idTaskNameInput" placeholder="{i18n>placeholderTaskName}" liveChange="onLiveChangeCreateEditTask"
+                    value="{shared>/createEditTask/taskName}" maxLength="25" valueState="{shared>/createEditTask/valueStateTaskName}" valueStateText="{shared>/createEditTask/valueStateTextTaskName}" />
+				<Label id="idTaskDescriptionLabel" class="sapUiSmallMarginTop" text="{i18n>taskDescription}" required="true" />
+				<TextArea id="idTaskDescriptionTextArea" placeholder="{i18n>placeholderTaskDescription}" liveChange="onLiveChangeCreateEditTask"
+                    value="{shared>/createEditTask/taskDesc}" maxLength="250" growing="true" valueState="{shared>/createEditTask/valueStateTaskNameDesc}" valueStateText="{shared>/createEditTask/valueStateTextTaskNameDesc}" />
+				<Label id="idPriorityLabelCreateEdit" text="{i18n>priority}" class="sapUiSmallMarginTop" required="true" />
+                <HBox id="idHBoxCreateEditTask">
+                    <RadioButton id="idRadioButtonHigh" text="{i18n>high}" selected="{shared>/createEditTask/highPriority}" />
+                    <RadioButton id="idRadioButtonMedium" text="{i18n>medium}" selected="{shared>/createEditTask/mediumPriority}" />        
+                    <RadioButton id="idRadioButtonLow" text="{i18n>low}" selected="{shared>/createEditTask/lowPriority}" />
+                 </HBox>
+                <Label id="idDueDateLabel" text="{i18n>dueDate}" required="true"/>
+                <DatePicker id="idDatePickerCreateEditTask" change="onLiveChangeCreateEditTask" minDate="{shared>/createEditTask/minDate}"
+                    dateValue="{shared>/createEditTask/dueDate}" valueState="{shared>/createEditTask/valueStateDueDate}" valueStateText="{shared>/createEditTask/valueStateTextDueDate}" />
+                <Label id="idMarkAsCompleteLabel" />
+                <CheckBox id="idMarkAsCompleteCheckBox" text="{i18n>markAsComplete}" 
+                visible="{visibility>/MarkASComplete}" selected="{shared>/createEditTask/checked}"/>
+			</form:content>
+		</form:SimpleForm>
+        <buttons>
+            <Button id="idSaveButton" text="{i18n>save}" type="Emphasized" press="onPressUpdateEditTaskAdd" visible="{visibility>/SaveButton}" />
+            <Button id="idAddButton" text="{i18n>add}" type="Emphasized" press="onPressCreateEditTaskAdd" visible="{visibility>/AddButton}" />
+            <Button id="idCloseButton" text="{i18n>close}" press="onPressClose" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

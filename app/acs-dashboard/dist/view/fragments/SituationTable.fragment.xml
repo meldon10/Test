@@ -1,0 +1,45 @@
+<core:FragmentDefinition
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:vk="sap.ui.vk"
+    xmlns:table="sap.ui.table">
+    <VBox id="idSituationVBox" class="sapUiNoContentPadding sapSituationTableSection">
+        <Label text="{i18n>serviceOrders}" class="sapUiSmallMarginBottom"></Label>
+        <table:Table id="situationTable"  
+                    visibleRowCountMode="Auto"
+                    selectionMode="None"
+                    rows="{shared>/situationTableCustomerDetails/service_orders}">
+            <table:columns>
+                <table:Column id="idSituation" >
+                    <Label id="idSituationLabel" text="{i18n>id}"/>
+                    <table:template>
+                        <Link
+                            text="{shared>SERVICEORDER}"
+                            ariaHasPopup="Dialog"/>
+                    </table:template>
+                </table:Column>
+                <table:Column id="idSituationDescription" >
+                    <Label id="idSituationDescriptionLabel" text="{i18n>salesorganization}"/>
+                    <table:template>
+                        <Text id="idSituationDescriptionValue" 
+                                    text="{shared>salesorganization}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+                <table:Column id="idSituationSoldToParty" >
+                    <Label id="idSituationSoldToPartyLabel" text="{i18n>serviceordertype}"/>
+                    <table:template>
+                        <Text id="idSituationSoldToPartyValue" text="{shared>serviceordertype}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+                <table:Column id="idSituationRanking" >
+                    <Label id="idSituationRankingLabel" text="{i18n>soldtoparty}"/>
+                    <table:template>
+                        <Text id="idSituationRankingValue" text="{shared>soldtoparty}" wrapping="false"/>
+                    </table:template>
+                </table:Column>
+            </table:columns>
+        </table:Table>
+    </VBox>
+</core:FragmentDefinition>

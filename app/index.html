@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Service Management Cockpit</title>
+	<script>
+	window["sap-ushell-config"] = {
+		defaultRenderer: "fiori2",
+		applications: {
+			"acs-dashboard": {
+				title: "ACS Dashboard",
+				description: "ACS",
+				additionalInformation: "SAPUI5.Component=com.sap.acs.ui.dashboard",
+				applicationType: "URL",
+				url: "/acs-dashboard/webapp",
+				navigationMode: "embedded"
+			},
+			"manage-admin-config": {
+				title: "Manage Admin Config",
+				description: "Admin",
+				additionalInformation: "SAPUI5.Component=adminconfiguration.adminconfiguration",
+				applicationType: "URL",
+				url: "/admin_configuration/webapp",
+				navigationMode: "embedded"
+			}
+		}
+	};
+	</script>
+	<script src="https://sapui5.hana.ondemand.com/test-resources/sap/ushell/bootstrap/sandbox.js"></script>
+	<script src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration, sap.ui.layout" data-sap-ui-compatVersion="edge" data-sap-ui-theme="sap_fiori_3" data-sap-ui-frameOptions="allow"></script>
+	<script>
+	sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt("content"))
+	</script>
+</head>
+    <body class="sapUiBody" id="content"></body>
+</html>

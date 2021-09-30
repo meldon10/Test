@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sap.acs</groupId>
+	<artifactId>acs-service-management-parent</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+
+	<name>acs-service-management parent</name>
+
+	<properties>
+		<!-- OUR VERSION -->
+		<revision>1.0.0-SNAPSHOT</revision>
+        <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
+        <jacoco.skip>false</jacoco.skip>
+		<!-- DEPENDENCIES VERSION -->
+		<jdk.version>1.8</jdk.version>
+		<cds.services.version>1.17.1</cds.services.version>
+		<spring.boot.version>2.4.4</spring.boot.version>
+		<node.version>v12.21.0</node.version>
+		<node.url>http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.releases.apt/</node.url>
+	</properties>
+
+	<modules>
+		<module>srv</module>
+		<module>integration-tests</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- CDS SERVICES -->
+			
+
+			<!-- SPRING BOOT -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+            <dependency>
+				<groupId>com.sap.cloud.sdk</groupId>
+				<artifactId>sdk-bom</artifactId>
+				<version>3.53.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<!-- JAVA VERSION -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- MAKE SPRING BOOT PLUGIN RUNNABLE FROM ROOT -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+
+			<!-- POM FLATTENING FOR CI FRIENDLY VERSIONS -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.2.5</version>
+				<configuration>
+					<updatePomFile>true</updatePomFile>
+					<flattenMode>resolveCiFriendliesOnly</flattenMode>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- PROJECT STRUCTURE CHECKS -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<executions>
+					<execution>
+						<id>Project Structure Checks</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.5.0</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>${jdk.version}</version>
+								</requireJavaVersion>
+								<reactorModuleConvergence/>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+            <!--Added jacoco plugin-->
+            <plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-plugin.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>**/cds/gen/**</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>coverage-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<skip>${jacoco.skip}</skip>
+							<destFile>${project.build.directory}/jacoco-ut/jacoco.exec</destFile>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<skip>${jacoco.skip}</skip>
+							<dataFile>${project.build.directory}/jacoco-ut/jacoco.exec</dataFile>
+							<outputDirectory>${project.build.directory}/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>coverage-check</id>
+						<phase>test</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<skip>${jacoco.skip}</skip>
+							<dataFile>${project.build.directory}/jacoco-ut/jacoco.exec</dataFile>
+							<rules>
+								<rule>
+									<element>BUNDLE</element>
+									<limits>
+										<limit>
+											<counter>INSTRUCTION</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.00</minimum>											<!-- TODO: change after tests are written-->
+										</limit>
+										<limit>
+											<counter>BRANCH</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.00</minimum>											<!-- TODO: change after tests are written-->
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>            
+		</plugins>
+	</build>
+	<profiles>
+		<!-- A profile that uses global installation of @sap/cds-dk -->
+		<profile>
+			<id>cdsdk-global</id>
+			<properties>
+				<cdsdk-global>true</cdsdk-global>
+			</properties>
+		</profile>
+	</profiles>
+</project>

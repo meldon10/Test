@@ -1,0 +1,45 @@
+.sapUiACSDynamicPageHeaderTitle{
+    margin-left: 1.875rem !important;
+    margin-right: 1.875rem !important;   
+}
+ 
+.sapUiACSDynamicPageHeaderUi{
+    margin-left: 1.875rem !important;
+    margin-right: 1.875rem !important;
+}
+ 
+.sapMapTodoPanel{
+    height: 23.5rem !important;      
+}
+
+.sapHeaderTitle{
+    height: 33rem !important;
+}
+
+.sapSituationTableSection{
+    margin: -2rem !important;
+}
+
+.sapFDynamicPageHeaderPinnable .sapFDynamicPageToggleHeaderIndicator{
+    margin-left: -2.5rem !important;
+}
+ 
+.sapPanelMapsContainer .sapMPanelContent {
+     height: 22rem !important; 
+}
+
+
+.sapQuickLinkWorklistPanel{
+   height: 24.5rem !important; 
+}
+
+.sapUiHeight .sapMFlexItemAlignAuto{
+    height: 27rem !important;
+}
+
+.sapSubHeaderHeight{
+    height: 2.5rem !important;
+}
+
+
+
